@@ -74,10 +74,6 @@ CREATE TABLE "users"
     PRIMARY KEY ("id")
 );
 
-ALTER TABLE "tags"
-    ADD FOREIGN KEY ("subtag_id") REFERENCES "tags" ("id")
-        ON UPDATE NO ACTION ON DELETE NO ACTION;
-
 ALTER TABLE "mediafiles_albums"
     ADD FOREIGN KEY ("mediafile_id") REFERENCES "mediafiles" ("id")
         ON UPDATE NO ACTION ON DELETE CASCADE;
