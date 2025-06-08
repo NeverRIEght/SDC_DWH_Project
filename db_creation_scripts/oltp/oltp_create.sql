@@ -23,6 +23,7 @@ CREATE TABLE "albums"
     "created_datetime" TIMESTAMPTZ NOT NULL,
     "updated_datetime" TIMESTAMPTZ NOT NULL,
     "viewed_datetime"  TIMESTAMPTZ NOT NULL,
+    "user_id" BIGINT NOT NULL,
     PRIMARY KEY ("id")
 );
 
@@ -34,6 +35,7 @@ CREATE TABLE "tags"
     "created_datetime" TIMESTAMPTZ NOT NULL,
     "updated_datetime" TIMESTAMPTZ NOT NULL,
     "viewed_datetime"  TIMESTAMPTZ NOT NULL,
+    "user_id" BIGINT NOT NULL,
     PRIMARY KEY ("id")
 );
 
@@ -53,6 +55,7 @@ CREATE TABLE "groups"
     "created_datetime" TIMESTAMPTZ NOT NULL,
     "updated_datetime" TIMESTAMPTZ NOT NULL,
     "viewed_datetime"  TIMESTAMPTZ NOT NULL,
+    "user_id" BIGINT NOT NULL,
     PRIMARY KEY ("id")
 );
 
@@ -106,3 +109,24 @@ ALTER TABLE "groups"
 ALTER TABLE "mediafiles"
     ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id")
         ON UPDATE NO ACTION ON DELETE CASCADE;
+
+ALTER TABLE "albums"
+    ADD FOREIGN KEY("user_id") REFERENCES "users"("id")
+        ON UPDATE NO ACTION ON DELETE CASCADE;
+
+ALTER TABLE "tags"
+    ADD FOREIGN KEY("user_id") REFERENCES "users"("id")
+        ON UPDATE NO ACTION ON DELETE CASCADE;
+
+ALTER TABLE "groups"
+    ADD FOREIGN KEY("user_id") REFERENCES "users"("id")
+        ON UPDATE NO ACTION ON DELETE CASCADE;
+
+ALTER TABLE "albums"
+    ADD CONSTRAINT "uq_album_name_user" UNIQUE ("name", "user_id");
+
+ALTER TABLE "tags"
+    ADD CONSTRAINT "uq_tag_name_user" UNIQUE ("name", "user_id");
+
+ALTER TABLE "groups"
+    ADD CONSTRAINT "uq_group_name_user" UNIQUE ("name", "user_id");
