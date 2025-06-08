@@ -31,7 +31,6 @@ CREATE TABLE "tags"
 (
     "id"               BIGSERIAL   NOT NULL,
     "name"             TEXT        NOT NULL,
-    "subtag_id"        BIGINT,
     "created_datetime" TIMESTAMPTZ NOT NULL,
     "updated_datetime" TIMESTAMPTZ NOT NULL,
     "viewed_datetime"  TIMESTAMPTZ NOT NULL,
