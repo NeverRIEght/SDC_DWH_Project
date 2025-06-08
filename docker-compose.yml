@@ -13,6 +13,7 @@ services:
     volumes:
       - ./db_creation_scripts/oltp:/docker-entrypoint-initdb.d
       - ./data:/var/lib/postgresql/csv_imports:ro
+      - ./etl/csvToOltp:/opt/etl_scripts:ro
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U $${OLTP_USER}" ]
       interval: 2s

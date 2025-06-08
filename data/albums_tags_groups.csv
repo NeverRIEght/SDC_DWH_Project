@@ -10,7 +10,7 @@ Jake@gmail.com,https://internal-security-footage.s3.ca-central-1.amazonaws.com/c
 Jake@gmail.com,https://s3.amazonaws.com/e-commerce-product-images/sku-9876/main_view.tiff,Design,"design, product images, work, product 23",
 Jake@gmail.com,https://raw-video-uploads.s3.us-east-2.amazonaws.com/drone_footage/city_tour_4k.mkv,Work,"drone, drone view","Drone shots 24.05.2015"
 Jake@gmail.com,https://s3.eu-west-1.amazonaws.com/blog-content/post_images/summer_tips_graphic.svg,Work,"useful, tips, work, website","Website development"
-Jake@gmail.com,https://s3.ap-south-1.amazonaws.com/mobile-app-resources/animations/loading_spinner.webm,Design,"design, work, website, graphics","Website development"
+Jake@gmail.com,https://s3.ap-south-1.amazonaws.com/mobile-app-resources/animations/loading_spinner.webm,"Design, Work","design, work, website, graphics","Website development"
 Michael@gmail.com,https://s3.sa-east-1.amazonaws.com/archive-photos/historical/old_city_square.bmp,Nature,"city, nature, history","Walks/Walk 1"
 Alex@gmail.com,https://private-assets-s3.amazonaws.com/design-mockups/website_redesign_hero.psd,Work,"design, work, website, graphics","Website development"
 Alex@gmail.com,https://s3.ap-southeast-2.amazonaws.com/streaming-platform-data/trailers/upcoming_movie_trailer.flv,Other,,
