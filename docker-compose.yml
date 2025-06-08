@@ -1,0 +1,19 @@
+name: Photos App DWH
+services:
+  oltp:
+    container_name: postgres
+    image: postgres:17.4
+    environment:
+      POSTGRES_USER: ${OLTP_USER}
+      POSTGRES_PASSWORD: ${OLTP_PASSWORD}
+      POSTGRES_DB: ${OLTP_DB_NAME}
+    ports:
+      - "${OLTP_EXTERNAL_PORT}:5432"
+    restart: unless-stopped
+    volumes:
+      - ./db_creation_scripts/oltp:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $${OLTP_USER}" ]
+      interval: 2s
+      timeout: 10s
+      retries: 5
