@@ -1,7 +1,7 @@
 name: Photos App DWH
 services:
   oltp:
-    container_name: postgres
+    container_name: oltp
     image: postgres:17.4
     environment:
       POSTGRES_USER: ${OLTP_USER}
