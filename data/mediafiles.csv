@@ -1,0 +1,16 @@
+users_name,object_storage_url,is_favorite,trashed_datetime,albums,tags,groups
+Michael,https://s3.amazonaws.com/my-media-bucket/photos/vacation_2024/beach_sunset.jpg,true,2024-06-07T10:30:00+03:00,Nature,"sun, beach, nature",Walks/Walk 1
+Anna,https://company-marketing.s3.us-east-1.amazonaws.com/videos/product_launch_promo.mp4,false,,Work,product,ToSort
+Anna,https://user-generated-content.s3.eu-central-1.amazonaws.com/memes/funny_cat.png,true,,Funny Animals,"animals, cats, cute",Walks/Walk 1
+Anna,https://s3.us-west-2.amazonaws.com/project-assets-prod/backgrounds/abstract_design.webp,true,,Design,"design, abstract, minimalistic",ToSort
+Michael,https://public-web-media.s3.amazonaws.com/galleries/events/opening_night_001.jpeg,false,,Nature,"night, moon, nature",Walks/Walk 1
+Jake,https://dev-stream-storage.s3.ap-southeast-1.amazonaws.com/clips/gaming_highlight_reel.mov,true,2024-12-08T10:31:00+03:00,Games,"games, apex legends, highlights",Apex
+Jake,https://s3.ap-northeast-1.amazonaws.com/customer-dashboards/profile_avatars/user_123456.gif,false,,Avatar,,ToSort
+Jake,https://internal-security-footage.s3.ca-central-1.amazonaws.com/cameras/entrance_feed_2024-06-07.avi,false,,Work,"surveillance, front camera",Surveillance
+Jake,https://s3.amazonaws.com/e-commerce-product-images/sku-9876/main_view.tiff,true,,Design,"design, product images, work, product 23",
+Jake,https://raw-video-uploads.s3.us-east-2.amazonaws.com/drone_footage/city_tour_4k.mkv,false,,Work,"drone, drone view",Drone shots 24.05.2015
+Jake,https://s3.eu-west-1.amazonaws.com/blog-content/post_images/summer_tips_graphic.svg,true,,Work,"useful, tips, work, website",Website development
+Jake,https://s3.ap-south-1.amazonaws.com/mobile-app-resources/animations/loading_spinner.webm,true,,Design,"design, work, website, graphics",Website development
+Michael,https://s3.sa-east-1.amazonaws.com/archive-photos/historical/old_city_square.bmp,false,,Nature,"city, nature, history",Walks/Walk 1
+Alex,https://private-assets-s3.amazonaws.com/design-mockups/website_redesign_hero.psd,true,,Work,"design, work, website, graphics",Website development
+Alex,https://s3.ap-southeast-2.amazonaws.com/streaming-platform-data/trailers/upcoming_movie_trailer.flv,false,,Other,,
