@@ -70,6 +70,7 @@ CREATE TABLE "users"
 (
     "id"   BIGSERIAL NOT NULL,
     "name" TEXT      NOT NULL,
+    "email" TEXT      NOT NULL,
     PRIMARY KEY ("id")
 );
 
@@ -129,3 +130,9 @@ ALTER TABLE "tags"
 
 ALTER TABLE "groups"
     ADD CONSTRAINT "uq_group_name_user" UNIQUE ("name", "user_id");
+
+ALTER TABLE "users"
+    ADD CONSTRAINT "uq_email" UNIQUE ("email");
+
+ALTER TABLE "mediafiles"
+    ADD CONSTRAINT "uq_object_storage_url" UNIQUE ("object_storage_url");
