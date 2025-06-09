@@ -10,31 +10,31 @@ CREATE TABLE "mediafiles"
 (
     "id"                 BIGSERIAL NOT NULL,
     "user_id"            BIGINT    NOT NULL,
-    "object_storage_url" TEXT      NOT NULL,
-    "is_favorite"        BOOLEAN   NOT NULL,
-    "trashed_datetime"   TIMESTAMPTZ,
+    "object_storage_url" TEXT      NOT NULL UNIQUE,
+    "is_favorite"        BOOLEAN   NOT NULL DEFAULT FALSE,
+    "trashed_datetime"   TIMESTAMPTZ        DEFAULT NULL,
     PRIMARY KEY ("id")
 );
 
 CREATE TABLE "albums"
 (
     "id"               BIGSERIAL   NOT NULL,
+    "user_id"          BIGINT      NOT NULL,
     "name"             TEXT        NOT NULL,
-    "created_datetime" TIMESTAMPTZ NOT NULL,
-    "updated_datetime" TIMESTAMPTZ NOT NULL,
-    "viewed_datetime"  TIMESTAMPTZ NOT NULL,
-    "user_id" BIGINT NOT NULL,
+    "created_datetime" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_datetime" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "viewed_datetime"  TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY ("id")
 );
 
 CREATE TABLE "tags"
 (
     "id"               BIGSERIAL   NOT NULL,
+    "user_id"          BIGINT      NOT NULL,
     "name"             TEXT        NOT NULL,
-    "created_datetime" TIMESTAMPTZ NOT NULL,
-    "updated_datetime" TIMESTAMPTZ NOT NULL,
-    "viewed_datetime"  TIMESTAMPTZ NOT NULL,
-    "user_id" BIGINT NOT NULL,
+    "created_datetime" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_datetime" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "viewed_datetime"  TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY ("id")
 );
 
@@ -46,31 +46,28 @@ CREATE TABLE "mediafiles_tags"
     PRIMARY KEY ("id")
 );
 
-CREATE TABLE "groups"
-(
-    "id"               BIGSERIAL   NOT NULL,
-    "name"             TEXT        NOT NULL,
-    "subgroup_id"      BIGINT,
-    "created_datetime" TIMESTAMPTZ NOT NULL,
-    "updated_datetime" TIMESTAMPTZ NOT NULL,
-    "viewed_datetime"  TIMESTAMPTZ NOT NULL,
-    "user_id" BIGINT NOT NULL,
-    PRIMARY KEY ("id")
-);
-
-CREATE TABLE "mediafiles_groups"
-(
-    "id"           BIGSERIAL NOT NULL,
-    "mediafile_id" BIGINT    NOT NULL,
-    "group_id"     BIGINT    NOT NULL,
-    PRIMARY KEY ("id")
-);
-
 CREATE TABLE "users"
 (
-    "id"   BIGSERIAL NOT NULL,
-    "name" TEXT      NOT NULL,
-    "email" TEXT      NOT NULL,
+    "id"           BIGSERIAL NOT NULL,
+    "email"        TEXT      NOT NULL UNIQUE,
+    "display_name" TEXT      NOT NULL,
+    PRIMARY KEY ("id")
+);
+
+CREATE TABLE "duplicates"
+(
+    "id"             BIGSERIAL NOT NULL,
+    "mediafile_1_id" BIGINT    NOT NULL,
+    "mediafile_2_id" BIGINT    NOT NULL,
+    PRIMARY KEY ("id")
+);
+
+CREATE TABLE "user_preferences"
+(
+    "id"            BIGSERIAL NOT NULL,
+    "user_id"       BIGINT    NOT NULL UNIQUE,
+    "is_dark_theme" BOOLEAN   NOT NULL DEFAULT TRUE,
+    "is_ai_allowed" BOOLEAN   NOT NULL DEFAULT FALSE,
     PRIMARY KEY ("id")
 );
 
@@ -83,52 +80,34 @@ ALTER TABLE "mediafiles_albums"
         ON UPDATE NO ACTION ON DELETE CASCADE;
 
 ALTER TABLE "mediafiles_tags"
-    ADD FOREIGN KEY ("mediafile_id") REFERENCES "mediafiles" ("id")
-        ON UPDATE NO ACTION ON DELETE CASCADE;
-
-ALTER TABLE "mediafiles_tags"
     ADD FOREIGN KEY ("tag_id") REFERENCES "tags" ("id")
         ON UPDATE NO ACTION ON DELETE CASCADE;
 
-ALTER TABLE "mediafiles_groups"
-    ADD FOREIGN KEY ("group_id") REFERENCES "groups" ("id")
-        ON UPDATE NO ACTION ON DELETE CASCADE;
-
-ALTER TABLE "mediafiles_groups"
-    ADD FOREIGN KEY ("mediafile_id") REFERENCES "mediafiles" ("id")
-        ON UPDATE NO ACTION ON DELETE CASCADE;
-
-ALTER TABLE "groups"
-    ADD FOREIGN KEY ("subgroup_id") REFERENCES "groups" ("id")
+ALTER TABLE "mediafiles"
+    ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id")
         ON UPDATE NO ACTION ON DELETE NO ACTION;
 
-ALTER TABLE "mediafiles"
+ALTER TABLE "user_preferences"
     ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id")
         ON UPDATE NO ACTION ON DELETE CASCADE;
 
-ALTER TABLE "albums"
-    ADD FOREIGN KEY("user_id") REFERENCES "users"("id")
+ALTER TABLE "duplicates"
+    ADD FOREIGN KEY ("mediafile_1_id") REFERENCES "mediafiles" ("id")
+        ON UPDATE NO ACTION ON DELETE CASCADE;
+
+ALTER TABLE "duplicates"
+    ADD FOREIGN KEY ("mediafile_2_id") REFERENCES "mediafiles" ("id")
+        ON UPDATE NO ACTION ON DELETE CASCADE;
+
+ALTER TABLE "mediafiles_tags"
+    ADD FOREIGN KEY ("mediafile_id") REFERENCES "mediafiles" ("id")
         ON UPDATE NO ACTION ON DELETE CASCADE;
 
 ALTER TABLE "tags"
-    ADD FOREIGN KEY("user_id") REFERENCES "users"("id")
-        ON UPDATE NO ACTION ON DELETE CASCADE;
+    ADD CONSTRAINT "unique_user_tag_name" UNIQUE ("user_id", "name");
 
-ALTER TABLE "groups"
-    ADD FOREIGN KEY("user_id") REFERENCES "users"("id")
-        ON UPDATE NO ACTION ON DELETE CASCADE;
+ALTER TABLE "duplicates"
+    ADD CONSTRAINT check_duplicates_order CHECK (mediafile_1_id < mediafile_2_id);
 
-ALTER TABLE "albums"
-    ADD CONSTRAINT "uq_album_name_user" UNIQUE ("name", "user_id");
-
-ALTER TABLE "tags"
-    ADD CONSTRAINT "uq_tag_name_user" UNIQUE ("name", "user_id");
-
-ALTER TABLE "groups"
-    ADD CONSTRAINT "uq_group_name_user" UNIQUE ("name", "user_id");
-
-ALTER TABLE "users"
-    ADD CONSTRAINT "uq_email" UNIQUE ("email");
-
-ALTER TABLE "mediafiles"
-    ADD CONSTRAINT "uq_object_storage_url" UNIQUE ("object_storage_url");
+ALTER TABLE "duplicates"
+    ADD CONSTRAINT unique_duplicates_pair UNIQUE (mediafile_1_id, mediafile_2_id);
