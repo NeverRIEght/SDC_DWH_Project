@@ -110,7 +110,7 @@ ALTER TABLE "mediafiles_tags"
         ON UPDATE NO ACTION ON DELETE CASCADE;
 
 ALTER TABLE "albums"
-    ADD CONSTRAINT "unique_user_tag_name" UNIQUE ("user_id", "name");
+    ADD CONSTRAINT "unique_user_album_name" UNIQUE ("user_id", "name");
 
 ALTER TABLE "tags"
     ADD CONSTRAINT "unique_user_tag_name" UNIQUE ("user_id", "name");
