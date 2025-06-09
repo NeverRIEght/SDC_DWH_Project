@@ -14,7 +14,7 @@ COPY temp_users_mediafiles_import
     CSV HEADER;
 
 -- Import users, without duplicates
-INSERT INTO users (name, email)
+INSERT INTO users (display_name, email)
 SELECT DISTINCT t.user_name, t.user_email
 FROM temp_users_mediafiles_import t
 WHERE NOT EXISTS (
