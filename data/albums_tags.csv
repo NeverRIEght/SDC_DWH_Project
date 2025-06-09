@@ -1,0 +1,16 @@
+object_storage_url,album_names,tag_names
+https://s3.amazonaws.com/my-media-bucket/photos/vacation_2024/beach_sunset.jpg,Nature,"sun, beach, nature"
+https://company-marketing.s3.us-east-1.amazonaws.com/videos/product_launch_promo.mp4,Work,product
+https://user-generated-content.s3.eu-central-1.amazonaws.com/memes/funny_cat.png,Funny Animals,"animals, cats, cute"
+https://s3.us-west-2.amazonaws.com/project-assets-prod/backgrounds/abstract_design.webp,Design,"design, abstract, minimalistic"
+https://public-web-media.s3.amazonaws.com/galleries/events/opening_night_001.jpeg,Nature,"night, moon, nature"
+https://dev-stream-storage.s3.ap-southeast-1.amazonaws.com/clips/gaming_highlight_reel.mov,Games,"games, apex legends, highlights"
+https://s3.ap-northeast-1.amazonaws.com/customer-dashboards/profile_avatars/user_123456.gif,Avatar,
+https://internal-security-footage.s3.ca-central-1.amazonaws.com/cameras/entrance_feed_2024-06-07.avi,Work,"surveillance, front camera"
+https://s3.amazonaws.com/e-commerce-product-images/sku-9876/main_view.tiff,Design,"design, product images, work, product 23"
+https://raw-video-uploads.s3.us-east-2.amazonaws.com/drone_footage/city_tour_4k.mkv,Work,"drone, drone view"
+https://s3.eu-west-1.amazonaws.com/blog-content/post_images/summer_tips_graphic.svg,Work,"useful, tips, work, website"
+https://s3.ap-south-1.amazonaws.com/mobile-app-resources/animations/loading_spinner.webm,"Design, Work","design, work, website, graphics"
+https://s3.sa-east-1.amazonaws.com/archive-photos/historical/old_city_square.bmp,Nature,"city, nature, history"
+https://private-assets-s3.amazonaws.com/design-mockups/website_redesign_hero.psd,Work,"design, work, website, graphics"
+https://s3.ap-southeast-2.amazonaws.com/streaming-platform-data/trailers/upcoming_movie_trailer.flv,Other,
