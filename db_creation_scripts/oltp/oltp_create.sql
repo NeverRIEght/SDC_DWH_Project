@@ -103,6 +103,9 @@ ALTER TABLE "mediafiles_tags"
     ADD FOREIGN KEY ("mediafile_id") REFERENCES "mediafiles" ("id")
         ON UPDATE NO ACTION ON DELETE CASCADE;
 
+ALTER TABLE "albums"
+    ADD CONSTRAINT "unique_user_tag_name" UNIQUE ("user_id", "name");
+
 ALTER TABLE "tags"
     ADD CONSTRAINT "unique_user_tag_name" UNIQUE ("user_id", "name");
 
