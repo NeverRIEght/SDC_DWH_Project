@@ -79,9 +79,15 @@ ALTER TABLE "mediafiles_albums"
     ADD FOREIGN KEY ("album_id") REFERENCES "albums" ("id")
         ON UPDATE NO ACTION ON DELETE CASCADE;
 
+ALTER TABLE "mediafiles_albums"
+    ADD CONSTRAINT unique_mediafiles_albums UNIQUE (mediafile_id, album_id);
+
 ALTER TABLE "mediafiles_tags"
     ADD FOREIGN KEY ("tag_id") REFERENCES "tags" ("id")
         ON UPDATE NO ACTION ON DELETE CASCADE;
+
+ALTER TABLE "mediafiles_tags"
+    ADD CONSTRAINT unique_mediafiles_tags UNIQUE (mediafile_id, tag_id);
 
 ALTER TABLE "mediafiles"
     ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id")
