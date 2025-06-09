@@ -1,0 +1,5 @@
+object_storage_url_1,object_storage_url_2
+https://s3.amazonaws.com/my-media-bucket/photos/vacation_2024/beach_sunset.jpg,https://s3.ap-northeast-1.amazonaws.com/customer-dashboards/profile_avatars/user_123456.gif
+https://company-marketing.s3.us-east-1.amazonaws.com/videos/product_launch_promo.mp4,https://s3.sa-east-1.amazonaws.com/archive-photos/historical/old_city_square.bmp
+https://user-generated-content.s3.eu-central-1.amazonaws.com/memes/funny_cat.png,https://private-assets-s3.amazonaws.com/design-mockups/website_redesign_hero.psd
+https://s3.us-west-2.amazonaws.com/project-assets-prod/backgrounds/abstract_design.webp,https://raw-video-uploads.s3.us-east-2.amazonaws.com/drone_footage/city_tour_4k.mkv
