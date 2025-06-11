@@ -8,11 +8,12 @@ CREATE TABLE "mediafiles_albums"
 
 CREATE TABLE "mediafiles"
 (
-    "id"                 BIGSERIAL NOT NULL,
-    "user_id"            BIGINT    NOT NULL,
-    "object_storage_url" TEXT      NOT NULL UNIQUE,
-    "is_favorite"        BOOLEAN   NOT NULL DEFAULT FALSE,
-    "trashed_datetime"   TIMESTAMPTZ        DEFAULT NULL,
+    "id"                 BIGSERIAL   NOT NULL,
+    "user_id"            BIGINT      NOT NULL,
+    "object_storage_url" TEXT        NOT NULL UNIQUE,
+    "is_favorite"        BOOLEAN     NOT NULL DEFAULT FALSE,
+    "trashed_datetime"   TIMESTAMPTZ          DEFAULT NULL,
+    "uploaded_datetime"  TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY ("id")
 );
 
