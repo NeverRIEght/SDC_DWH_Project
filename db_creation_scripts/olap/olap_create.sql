@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS "dim_event_type" CASCADE;
 CREATE TABLE "bridge_tags_mediafiles"
 (
     "id"            BIGSERIAL PRIMARY KEY,
+    "mediafiles_tags_id" BIGINT NOT NULL UNIQUE,
     "mediafile_key" BIGINT NOT NULL,
     "tag_key"       BIGINT NOT NULL,
     CONSTRAINT unique_mediafile_tag_link UNIQUE (mediafile_key, tag_key)
