@@ -86,6 +86,7 @@ CREATE TABLE "dim_album"
 (
     "id"         BIGSERIAL PRIMARY KEY,
     "album_id"   BIGINT  NOT NULL UNIQUE,
+    "name"       TEXT    NOT NULL,
     "user_key"   BIGINT  NOT NULL,
     "is_deleted" BOOLEAN NOT NULL DEFAULT FALSE
 );
