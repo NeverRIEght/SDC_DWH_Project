@@ -40,7 +40,8 @@ CREATE TABLE "fact_mediafile_activity"
     "user_key"                 BIGINT NOT NULL,
     "num_files_uploaded_today" BIGINT NOT NULL CHECK (num_files_uploaded_today >= 0),
     "total_files"              BIGINT NOT NULL CHECK (total_files >= 0),
-    "total_trashed_files"      BIGINT NOT NULL CHECK (total_trashed_files >= 0)
+    "total_trashed_files"      BIGINT NOT NULL CHECK (total_trashed_files >= 0),
+    CONSTRAINT unique_user_date UNIQUE (date_key, user_key)
 );
 
 CREATE TABLE "dim_user"
