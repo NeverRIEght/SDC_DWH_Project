@@ -1,3 +1,4 @@
+DROP FOREIGN TABLE IF EXISTS oltp_mediafiles CASCADE;
 CREATE FOREIGN TABLE oltp_mediafiles (
     id BIGINT,
     user_id BIGINT,

@@ -10,6 +10,7 @@ CREATE USER MAPPING FOR CURRENT_USER
     SERVER oltp_server
     OPTIONS (user 'oltp_user', password 'oltp_password');
 
+DROP FOREIGN TABLE IF EXISTS oltp_users CASCADE;
 CREATE FOREIGN TABLE oltp_users (
     id BIGINT,
     email TEXT,
