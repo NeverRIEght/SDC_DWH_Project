@@ -14,10 +14,10 @@ DROP TABLE IF EXISTS "dim_event_type" CASCADE;
 
 CREATE TABLE "bridge_tags_mediafiles"
 (
-    "id"            BIGSERIAL PRIMARY KEY,
+    "id"                 BIGSERIAL PRIMARY KEY,
     "mediafiles_tags_id" BIGINT NOT NULL UNIQUE,
-    "mediafile_key" BIGINT NOT NULL,
-    "tag_key"       BIGINT NOT NULL,
+    "mediafile_key"      BIGINT NOT NULL,
+    "tag_key"            BIGINT NOT NULL,
     CONSTRAINT unique_mediafile_tag_link UNIQUE (mediafile_key, tag_key)
 );
 
@@ -80,7 +80,8 @@ CREATE TABLE "fact_album_stats"
     "date_key"        BIGINT NOT NULL,
     "mediafile_count" BIGINT NOT NULL CHECK (mediafile_count >= 0),
     "favorites_count" BIGINT NOT NULL CHECK (favorites_count >= 0),
-    "trashed_count"   BIGINT NOT NULL CHECK (trashed_count >= 0)
+    "trashed_count"   BIGINT NOT NULL CHECK (trashed_count >= 0),
+    CONSTRAINT unique_album_date UNIQUE (album_key, date_key)
 );
 
 CREATE TABLE "dim_album"
