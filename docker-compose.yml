@@ -31,8 +31,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./db_creation_scripts/olap:/docker-entrypoint-initdb.d
-      - ./data:/var/lib/postgresql/csv_imports:ro
-      - ./etl/csvToOltp:/opt/etl_scripts:ro
+      - ./etl/oltpToOlap:/opt/etl_scripts:ro
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U $${OLAP_USER}" ]
       interval: 2s
