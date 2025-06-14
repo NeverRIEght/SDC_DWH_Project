@@ -84,9 +84,10 @@ CREATE TABLE "fact_album_stats"
 
 CREATE TABLE "dim_album"
 (
-    "id"       BIGSERIAL PRIMARY KEY,
-    "album_id" BIGINT NOT NULL UNIQUE,
-    "user_key" BIGINT NOT NULL
+    "id"         BIGSERIAL PRIMARY KEY,
+    "album_id"   BIGINT  NOT NULL UNIQUE,
+    "user_key"   BIGINT  NOT NULL,
+    "is_deleted" BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE "fact_duplicate_mediafiles"
@@ -103,10 +104,11 @@ CREATE TABLE "fact_duplicate_mediafiles"
 
 CREATE TABLE "dim_tag"
 (
-    "id"       BIGSERIAL PRIMARY KEY,
-    "tag_id"   BIGINT NOT NULL UNIQUE,
-    "user_key" BIGINT NOT NULL,
-    "name"     TEXT   NOT NULL
+    "id"         BIGSERIAL PRIMARY KEY,
+    "tag_id"     BIGINT  NOT NULL UNIQUE,
+    "user_key"   BIGINT  NOT NULL,
+    "name"       TEXT    NOT NULL,
+    "is_deleted" BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE "fact_tagging_activity"
