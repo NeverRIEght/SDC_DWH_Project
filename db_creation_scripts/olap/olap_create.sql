@@ -37,7 +37,7 @@ CREATE TABLE "dim_user"
 
 CREATE TABLE "dim_mediafile"
 (
-    "id"                BIGSERIAL   NOT NULL,
+    "id"                BIGSERIAL   PRIMARY KEY,
     "mediafile_id"      BIGINT      NOT NULL UNIQUE,
     "uploaded_datetime" TIMESTAMPTZ NOT NULL
 );
