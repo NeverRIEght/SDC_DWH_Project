@@ -19,3 +19,22 @@ services:
       interval: 2s
       timeout: 10s
       retries: 5
+  olap:
+    container_name: olap
+    image: postgres:17.4
+    environment:
+      POSTGRES_USER: ${OLAP_USER}
+      POSTGRES_PASSWORD: ${OLAP_PASSWORD}
+      POSTGRES_DB: ${OLAP_DB_NAME}
+    ports:
+      - "${OLAP_EXTERNAL_PORT}:5432"
+    restart: unless-stopped
+    volumes:
+      - ./db_creation_scripts/olap:/docker-entrypoint-initdb.d
+      - ./data:/var/lib/postgresql/csv_imports:ro
+      - ./etl/csvToOltp:/opt/etl_scripts:ro
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $${OLAP_USER}" ]
+      interval: 2s
+      timeout: 10s
+      retries: 5
