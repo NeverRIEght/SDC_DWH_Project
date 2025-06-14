@@ -1,3 +1,17 @@
+-- Drop all tables if they exist
+DROP TABLE IF EXISTS "bridge_tags_mediafiles" CASCADE;
+DROP TABLE IF EXISTS "dim_date" CASCADE;
+DROP TABLE IF EXISTS "fact_mediafile_activity" CASCADE;
+DROP TABLE IF EXISTS "dim_user" CASCADE;
+DROP TABLE IF EXISTS "dim_mediafile" CASCADE;
+DROP TABLE IF EXISTS "dim_user_preferences" CASCADE;
+DROP TABLE IF EXISTS "fact_album_stats" CASCADE;
+DROP TABLE IF EXISTS "dim_album" CASCADE;
+DROP TABLE IF EXISTS "fact_duplicate_mediafiles" CASCADE;
+DROP TABLE IF EXISTS "dim_tag" CASCADE;
+DROP TABLE IF EXISTS "fact_tagging_activity" CASCADE;
+DROP TABLE IF EXISTS "dim_event_type" CASCADE;
+
 CREATE TABLE "bridge_tags_mediafiles"
 (
     "id"            BIGSERIAL PRIMARY KEY,
@@ -9,7 +23,8 @@ CREATE TABLE "bridge_tags_mediafiles"
 CREATE TABLE "dim_date"
 (
     "id"          BIGSERIAL PRIMARY KEY,
-    "full_date"   DATE     NOT NULL,
+    "full_date"   DATE     NOT NULL UNIQUE,
+    "day"         SMALLINT NOT NULL CHECK (day >= 1 AND day <= 31),
     "day_of_week" SMALLINT NOT NULL CHECK (day_of_week >= 1 AND day_of_week <= 7),
     "day_name"    TEXT     NOT NULL,
     "month"       SMALLINT NOT NULL CHECK (month >= 1 AND month <= 12),
@@ -37,7 +52,7 @@ CREATE TABLE "dim_user"
 
 CREATE TABLE "dim_mediafile"
 (
-    "id"                BIGSERIAL   PRIMARY KEY,
+    "id"                BIGSERIAL PRIMARY KEY,
     "mediafile_id"      BIGINT      NOT NULL UNIQUE,
     "uploaded_datetime" TIMESTAMPTZ NOT NULL
 );
