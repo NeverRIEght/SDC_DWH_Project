@@ -1,3 +1,13 @@
+-- Drop all tables if they exist
+DROP TABLE IF EXISTS "mediafiles_albums" CASCADE;
+DROP TABLE IF EXISTS "mediafiles_tags" CASCADE;
+DROP TABLE IF EXISTS "mediafiles" CASCADE;
+DROP TABLE IF EXISTS "albums" CASCADE;
+DROP TABLE IF EXISTS "tags" CASCADE;
+DROP TABLE IF EXISTS "users" CASCADE;
+DROP TABLE IF EXISTS "duplicates" CASCADE;
+DROP TABLE IF EXISTS "user_preferences" CASCADE;
+
 CREATE TABLE "mediafiles_albums"
 (
     "id"           BIGSERIAL NOT NULL,
