@@ -15,10 +15,13 @@ DROP TABLE IF EXISTS "dim_event_type" CASCADE;
 CREATE TABLE "bridge_tags_mediafiles"
 (
     "id"                 BIGSERIAL PRIMARY KEY,
-    "mediafiles_tags_id" BIGINT NOT NULL UNIQUE,
-    "mediafile_key"      BIGINT NOT NULL,
-    "tag_key"            BIGINT NOT NULL,
-    CONSTRAINT unique_mediafile_tag_link UNIQUE (mediafile_key, tag_key)
+    "mediafiles_tags_id" BIGINT  NOT NULL UNIQUE,
+    "mediafile_key"      BIGINT  NOT NULL,
+    "tag_key"            BIGINT  NOT NULL,
+    "start_date"         DATE    NOT NULL DEFAULT CURRENT_DATE,
+    "end_date"           DATE             DEFAULT NULL,
+    "is_current"         BOOLEAN NOT NULL DEFAULT TRUE,
+    CONSTRAINT unique_current_mediafile_tag_link UNIQUE (mediafile_key, tag_key, is_current)
 );
 
 CREATE TABLE "dim_date"
@@ -118,10 +121,10 @@ CREATE TABLE "dim_tag"
 CREATE TABLE "fact_tagging_activity"
 (
     "id"             BIGSERIAL PRIMARY KEY,
-    "date_key"       BIGINT NOT NULL,
-    "bridge_tag_key" BIGINT NOT NULL,
-    "event_type_key" BIGINT NOT NULL,
-    "event_count"    BIGINT NOT NULL DEFAULT 1 CHECK (event_count >= 1)
+    "date_key"       BIGINT  NOT NULL,
+    "bridge_tag_key" BIGINT  NOT NULL,
+    "is_link_active" BOOLEAN NOT NULL DEFAULT TRUE,
+    CONSTRAINT unique_daily_active_link UNIQUE (date_key, bridge_tag_key)
 );
 
 CREATE TABLE "dim_event_type"
@@ -189,8 +192,4 @@ ALTER TABLE "bridge_tags_mediafiles"
 
 ALTER TABLE "fact_tagging_activity"
     ADD FOREIGN KEY ("bridge_tag_key") REFERENCES "bridge_tags_mediafiles" ("id")
-        ON UPDATE NO ACTION ON DELETE NO ACTION;
-
-ALTER TABLE "fact_tagging_activity"
-    ADD FOREIGN KEY ("event_type_key") REFERENCES "dim_event_type" ("id")
         ON UPDATE NO ACTION ON DELETE NO ACTION;
