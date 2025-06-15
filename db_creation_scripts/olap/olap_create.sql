@@ -10,7 +10,6 @@ DROP TABLE IF EXISTS "dim_album" CASCADE;
 DROP TABLE IF EXISTS "fact_duplicate_mediafiles" CASCADE;
 DROP TABLE IF EXISTS "dim_tag" CASCADE;
 DROP TABLE IF EXISTS "fact_tagging_activity" CASCADE;
-DROP TABLE IF EXISTS "dim_event_type" CASCADE;
 
 CREATE TABLE "bridge_tags_mediafiles"
 (
@@ -128,12 +127,6 @@ CREATE TABLE "fact_tagging_activity"
     CONSTRAINT unique_daily_event_per_link UNIQUE (date_key, bridge_tag_key, event_type)
 );
 
-CREATE TABLE "dim_event_type"
-(
-    "id"             BIGSERIAL PRIMARY KEY,
-    "event_name"     TEXT NOT NULL UNIQUE CHECK (LENGTH(event_name) > 0),
-    "event_category" TEXT NOT NULL CHECK (LENGTH(event_category) > 0)
-);
 
 ALTER TABLE "fact_mediafile_activity"
     ADD FOREIGN KEY ("user_key") REFERENCES "dim_user" ("id")
