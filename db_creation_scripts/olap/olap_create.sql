@@ -123,8 +123,9 @@ CREATE TABLE "fact_tagging_activity"
     "id"             BIGSERIAL PRIMARY KEY,
     "date_key"       BIGINT  NOT NULL,
     "bridge_tag_key" BIGINT  NOT NULL,
-    "is_link_active" BOOLEAN NOT NULL DEFAULT TRUE,
-    CONSTRAINT unique_daily_active_link UNIQUE (date_key, bridge_tag_key)
+    "event_type"       TEXT NOT NULL,
+    "event_count"      BIGINT NOT NULL DEFAULT 1 CHECK (event_count >= 1),
+    CONSTRAINT unique_daily_event_per_link UNIQUE (date_key, bridge_tag_key, event_type)
 );
 
 CREATE TABLE "dim_event_type"
